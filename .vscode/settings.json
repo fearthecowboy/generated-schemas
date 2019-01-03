@@ -1,0 +1,33 @@
+{
+  "files.exclude": {
+    "**/node_modules/**": true,
+    "**/dist/**": true,
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/*.log": true,
+    "**/package-deps.json": true,
+    "**/.DS_Store": true,
+    "src/autorest-core/*.js": false,
+    "src/autorest/*.js": false
+  },
+  "[typescript]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "editor.tabSize": 2,
+    "editor.detectIndentation": false
+  },
+  "[json]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "editor.tabSize": 2,
+    "editor.detectIndentation": false
+  },
+  "files.associations": {
+    "*.iced": "coffeescript"
+  },
+  "tslint.alwaysShowRuleFailuresAsWarnings": true,
+  "git.ignoreLimitWarning": true,
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "files.eol": "\n"
+}
