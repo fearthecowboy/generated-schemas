@@ -1,3 +1,4 @@
+$ErrorActionPreference  = "stop"
 
 # This script requires the following:
 # git
@@ -27,24 +28,29 @@ function In($location, $scriptblock) {
 }
 
 ## ===========================================================================
+$restSpecsRepoUri = "https://github.com/azure/azure-rest-api-specs"
 
 ## ===========================================================================
 
 $root = resolvepath $PSScriptRoot/..
+$tmp = resolvepath $root/tmp ; mkdir -ea 0  $tmp
+$restSpecs = resolvepath $tmp/azure-rest-api-specs
 $schemas = resolvepath $root/schemas
 
-if( -not (test-path $generated)) {
-  In $tmp { git clone $schemaRepoUrl }
+# cleanup schema folder first.
+in $schemas { git checkout . ; git clean -xdf .  } 
+
+# clone the azure-rest-api-specs repo
+if( -not (test-path $restSpecs)) {
+  In $tmp { git clone $restSpecsRepoUri }
 } else {
   try {
-    in $generated { git clean -xdf } 
+    in $restSpecs git clean -xdf
   } catch { 
     # just nuke it and clone it from scratch
-    Remove-Item -recurse -force $generated 
-    In $tmp { git clone $schemaRepoUrl }
+    Remove-Item -recurse -force $restSpecs 
+    In $tmp { git clone $restSpecsRepoUri }
   }
 }
-
-
 
 Write-Output $repo
