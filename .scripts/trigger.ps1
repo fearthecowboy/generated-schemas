@@ -1,66 +1,19 @@
 $ErrorActionPreference  = "stop"
+. $PSScriptRoot/shared.ps1
+. $PSScriptRoot/constants.ps1
 
 # This script requires the following:
 # git
 
 
 
-## functions
-
-function ResolvePath {
-  param (
-      [string] $FileName
-  )
-
-  $FileName = Resolve-Path $FileName -ErrorAction SilentlyContinue `
-                                     -ErrorVariable _frperror
-  if (-not($FileName)) {
-      $FileName = $_frperror[0].TargetObject
-  }
-
-  return $FileName
-}
-
-function In($location, $scriptblock) {
-  pushd $location
-  try {
-    & $scriptblock
-  } finally {
-    popd 
-  }
-}
-
-function write-hostcolor { Param ( $color,  [parameter(ValueFromRemainingArguments=$true)] $content ) write-host -fore $color $content }
-function comment { Param ( [parameter(ValueFromRemainingArguments=$true)] $content ) write-host -fore darkgray $content }
-function action { Param ( [parameter(ValueFromRemainingArguments=$true)] $content ) write-host -fore green $content }
-function warn { Param ( [parameter(ValueFromRemainingArguments=$true)] $content ) write-host -fore yellow $content }
-
-function err { Param ( [parameter(ValueFromRemainingArguments=$true)] $content ) write-host -fore red $content }
-
-new-alias '//'  comment
-new-alias '=>' action
-new-alias '/$' warn
-new-alias '/!' err
-
-new-alias '==>' write-hostcolor
-
-## ===========================================================================
-# constants
-$restSpecsRepoUri = "https://github.com/azure/azure-rest-api-specs"
-
-## ===========================================================================
-# locations
-$root = resolvepath $PSScriptRoot/..
-$tmp = resolvepath $root/tmp ; mkdir -ea 0  $tmp
-$restSpecs = resolvepath $tmp/azure-rest-api-specs
-$schemas = resolvepath $root/schemas
-
-
 ## ===========================================================================
 # script
+  
 // cleanup schema folder first.
 in $schemas { git checkout . ; git clean -xdf .  } 
 
+<#
 // ensure we have the azure-rest-api-specs repo
 if( -not (test-path $restSpecs)) {
   => cloning the repository
@@ -74,7 +27,51 @@ if( -not (test-path $restSpecs)) {
     Remove-Item -recurse -force $restSpecs 
     In $tmp { git clone $restSpecsRepoUri }
   }
+
 }
+#>
+
+# node c:\work\2019\autorest\src\autorest\dist\app --enable-multi-api --use=C:\work\2019\autorest.azureresourceschema --azureresourceschema C:\work\2019\azure-rest-api-specs\specification\redis\resource-manager\readme.md --output-folder=./schemas
+# --debug --verbose   --all C:\work\2019\azure-rest-api-specs\specification\redis\resource-manager\readme.md --output-folder=./schemas
+
+# autorest --azureresourceschema --api-version:XXXX-YY-ZZ  --output-folder:$(csaharpsdk) --MYSDKFOLDER:/foo/bar/bing/
+
+
+// get all readme.md files 
+# $allreadmes = get-childitem $restSpecs\readme.md -recurse  | where { $_.FullName -match "resource.manager" }
+$allreadmes = get-childitem tmp\azure-rest-api-specs\readme.md -recurse  | where { $_.FullName -match "resource.manager" } |where {$_.FullName -match "redis" } 
+
+# (select-string -Path C:\work\2019\generated-schemas\tmp\azure-rest-api-specs\specification\compute\resource-manager\readme.md -Pattern "\(tag\).*'(.*)'" |% { $_.Matches } | % { $_.groups[1].value } | Group-Object).Name
+
+$x = 0
+
+$allreadmes |% {
+  $file = $_
+  $parent = Resolve-Path "$($file)\.."  
+  $apiversions =  ((Get-ChildItem $parent -recurse -Directory).FullName | select-string -Pattern '.*\\(\d\d\d\d-\d\d-\d\d[^\\]*)$'  |% { $_.Matches } | % { $_.groups[1].value } | Group-Object).Name                          
+
+  
+
+  => On "$file `n => found api versions : $apiversions `n`n" 
+  $apiversions |% {
+    // run autorest on $file with --api-version:$_  
+    # // node c:\work\2019\autorest\src\autorest\dist\app --enable-multi-api --use=C:\work\2019\autorest.azureresourceschema --azureresourceschema $file --output-folder=./tmp/schemas "--api-version:$_" --verbose --debug
+    node c:\work\2019\autorest\src\autorest\dist\app --enable-multi-api --use=C:\work\2019\autorest.azureresourceschema --azureresourceschema $file --output-folder=./tmp/schemas "--api-version:$_" 
+    
+  }
+  <#
+  $tags  = (select-string -Path $file -Pattern "\(tag\).*'(.*)'" |% { $_.Matches } | % { $_.groups[1].value } | Group-Object).Name
+
+  $tags |% {
+    $tag = $_
+    # autorest $file --output-folder:$schemas/$tag --azureresourceschema --tag:$tag
+    => 
+  }
+  #>
+
+}
+
+<#
 
 // find files changed in last commit.
 $files = in $restSpecs { git diff-tree --no-commit-id --name-only -r HEAD~1 } 
@@ -89,16 +86,24 @@ $files |% {
   }
 }
 
+$cmd =  @()
 
 $swaggers |% {
   $swagger = $_
-  autorest --input-file:$swagger --output-folder:$schemas --azureresourceschema
+  # $cmd = $cmd + "--input-file=$( resolve-path $swagger)"
+  => autorest  --input-file=$(resolve-path $swagger)  --output-folder:$schemas --azureresourceschema
+  autorest --input-file=$(resolve-path $swagger) --output-folder:$schemas --azureresourceschema --title:none
+
 }
 
-$newfiles = in $schemas { git status . -uall }
+#=> autorest $cmd --output-folder:$schemas --azureresourceschema
+#autorest $cmd --output-folder:$schemas --azureresourceschema --title:none
+
+#>
+$newfiles = in $schemas { (git status . -uall).Trim() }
 $newMarkdownFiles = $newfiles | where { $_ -match ".md" }
 $newSchemaFiles = $newfiles | where { $_ -match ".json" }
 
-in $restSpecs { $newMarkdownFiles |% { remove-item $_ }  }
+in $schemas { $newMarkdownFiles |% { remove-item $_ }  }
 
 => $newSchemaFiles
