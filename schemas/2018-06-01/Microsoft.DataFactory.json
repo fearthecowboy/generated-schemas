@@ -1,0 +1,1494 @@
+{
+  "id": "https://schema.management.azure.com/schemas/2018-06-01/Microsoft.DataFactory.json#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Microsoft.DataFactory",
+  "description": "Microsoft DataFactory Resource Types",
+  "resourceDefinitions": {
+    "factories": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The factory name."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.DataFactory/factories"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-06-01"
+          ]
+        },
+        "location": {
+          "type": "string",
+          "description": "The resource location."
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The resource tags."
+        },
+        "identity": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/FactoryIdentity"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Identity properties of the factory resource."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/FactoryProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Factory resource properties."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/factories_triggers_childResource"
+              },
+              {
+                "$ref": "#/definitions/factories_pipelines_childResource"
+              },
+              {
+                "$ref": "#/definitions/factories_datasets_childResource"
+              },
+              {
+                "$ref": "#/definitions/factories_linkedservices_childResource"
+              },
+              {
+                "$ref": "#/definitions/factories_integrationRuntimes_childResource"
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.DataFactory/factories"
+    },
+    "factories_datasets": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_][^<>*#.%&:\\\\+?/]*$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The dataset name."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.DataFactory/factories/datasets"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-06-01"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Dataset"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The Azure Data Factory nested object which identifies data within different data stores, such as tables, files, folders, and documents."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.DataFactory/factories/datasets"
+    },
+    "factories_integrationRuntimes": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The integration runtime name."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.DataFactory/factories/integrationRuntimes"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-06-01"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/IntegrationRuntime"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Azure Data Factory nested object which serves as a compute resource for activities."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.DataFactory/factories/integrationRuntimes"
+    },
+    "factories_linkedservices": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_][^<>*#.%&:\\\\+?/]*$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The linked service name."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.DataFactory/factories/linkedservices"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-06-01"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/LinkedService"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The Azure Data Factory nested object which contains the information and credential which can be used to connect with related store or compute resource."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.DataFactory/factories/linkedservices"
+    },
+    "factories_pipelines": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_][^<>*#.%&:\\\\+?/]*$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The pipeline name."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.DataFactory/factories/pipelines"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-06-01"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Pipeline"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "A data factory pipeline."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.DataFactory/factories/pipelines"
+    },
+    "factories_triggers": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_][^<>*#.%&:\\\\+?/]*$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The trigger name."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.DataFactory/factories/triggers"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-06-01"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Trigger"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Azure data factory nested object which contains information about creating pipeline run"
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/factories_triggers_rerunTriggers_childResource"
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.DataFactory/factories/triggers"
+    },
+    "factories_triggers_rerunTriggers": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_][^<>*#.%&:\\\\+?/]*$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The rerun trigger name."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.DataFactory/factories/triggers/rerunTriggers"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-06-01"
+          ]
+        },
+        "startTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The start time for the time period for which restatement is initiated. Only UTC time is currently supported."
+        },
+        "endTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The end time for the time period for which restatement is initiated. Only UTC time is currently supported."
+        },
+        "maxConcurrency": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 50
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The max number of parallel time windows (ready for execution) for which a rerun is triggered."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "startTime",
+        "endTime",
+        "maxConcurrency"
+      ],
+      "description": "Microsoft.DataFactory/factories/triggers/rerunTriggers"
+    }
+  },
+  "definitions": {
+    "Activity": {
+      "type": "object",
+      "oneOf": [
+        {
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "Activity"
+              ]
+            }
+          }
+        }
+      ],
+      "properties": {
+        "additionalProperties": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Unmatched properties from the message are deserialized this collection"
+        },
+        "name": {
+          "type": "string",
+          "description": "Activity name."
+        },
+        "description": {
+          "type": "string",
+          "description": "Activity description."
+        },
+        "dependsOn": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ActivityDependency"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Activity depends on condition."
+        },
+        "userProperties": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/UserProperty"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Activity user properties."
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "type"
+      ],
+      "description": "A pipeline activity."
+    },
+    "ActivityDependency": {
+      "type": "object",
+      "properties": {
+        "additionalProperties": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Unmatched properties from the message are deserialized this collection"
+        },
+        "activity": {
+          "type": "string",
+          "description": "Activity name."
+        },
+        "dependencyConditions": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Succeeded",
+                  "Failed",
+                  "Skipped",
+                  "Completed"
+                ]
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Match-Condition for the dependency."
+        }
+      },
+      "required": [
+        "activity",
+        "dependencyConditions"
+      ],
+      "description": "Activity dependency information."
+    },
+    "Dataset": {
+      "type": "object",
+      "oneOf": [
+        {
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "Dataset"
+              ]
+            }
+          }
+        }
+      ],
+      "properties": {
+        "additionalProperties": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Unmatched properties from the message are deserialized this collection"
+        },
+        "description": {
+          "type": "string",
+          "description": "Dataset description."
+        },
+        "structure": {
+          "description": "Columns that define the structure of the dataset. Type: array (or Expression with resultType array), itemType: DatasetDataElement."
+        },
+        "schema": {
+          "description": "Columns that define the physical type schema of the dataset. Type: array (or Expression with resultType array), itemType: DatasetSchemaDataElement."
+        },
+        "linkedServiceName": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/LinkedServiceReference"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Linked service reference type."
+        },
+        "parameters": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/ParameterSpecification"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Definition of all parameters for an entity."
+        },
+        "annotations": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "List of tags that can be used for describing the Dataset."
+        },
+        "folder": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/DatasetFolder"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The folder that this Dataset is in. If not specified, Dataset will appear at the root level."
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "linkedServiceName",
+        "type"
+      ],
+      "description": "The Azure Data Factory nested object which identifies data within different data stores, such as tables, files, folders, and documents."
+    },
+    "DatasetFolder": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the folder that this Dataset is in."
+        }
+      },
+      "description": "The folder that this Dataset is in. If not specified, Dataset will appear at the root level."
+    },
+    "factories_datasets_childResource": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_][^<>*#.%&:\\\\+?/]*$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The dataset name."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "datasets"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-06-01"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Dataset"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The Azure Data Factory nested object which identifies data within different data stores, such as tables, files, folders, and documents."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.DataFactory/factories/datasets"
+    },
+    "factories_integrationRuntimes_childResource": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The integration runtime name."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "integrationRuntimes"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-06-01"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/IntegrationRuntime"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Azure Data Factory nested object which serves as a compute resource for activities."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.DataFactory/factories/integrationRuntimes"
+    },
+    "factories_linkedservices_childResource": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_][^<>*#.%&:\\\\+?/]*$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The linked service name."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "linkedservices"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-06-01"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/LinkedService"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The Azure Data Factory nested object which contains the information and credential which can be used to connect with related store or compute resource."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.DataFactory/factories/linkedservices"
+    },
+    "factories_pipelines_childResource": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_][^<>*#.%&:\\\\+?/]*$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The pipeline name."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "pipelines"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-06-01"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Pipeline"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "A data factory pipeline."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.DataFactory/factories/pipelines"
+    },
+    "factories_triggers_childResource": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_][^<>*#.%&:\\\\+?/]*$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The trigger name."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "triggers"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-06-01"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Trigger"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Azure data factory nested object which contains information about creating pipeline run"
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/factories_triggers_rerunTriggers_childResource"
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.DataFactory/factories/triggers"
+    },
+    "factories_triggers_rerunTriggers_childResource": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_][^<>*#.%&:\\\\+?/]*$"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The rerun trigger name."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "rerunTriggers"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-06-01"
+          ]
+        },
+        "startTime": {
+          "type": "string",
+          "description": "The start time for the time period for which restatement is initiated. Only UTC time is currently supported."
+        },
+        "endTime": {
+          "type": "string",
+          "description": "The end time for the time period for which restatement is initiated. Only UTC time is currently supported."
+        },
+        "maxConcurrency": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 50
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The max number of parallel time windows (ready for execution) for which a rerun is triggered."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "startTime",
+        "endTime",
+        "maxConcurrency"
+      ],
+      "description": "Microsoft.DataFactory/factories/triggers/rerunTriggers"
+    },
+    "FactoryIdentity": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "SystemAssigned"
+          ],
+          "description": "The identity type. Currently the only supported type is 'SystemAssigned'."
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "description": "Identity properties of the factory resource."
+    },
+    "FactoryProperties": {
+      "type": "object",
+      "properties": {
+        "repoConfiguration": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/FactoryRepoConfiguration"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Factory's git repo information."
+        }
+      },
+      "description": "Factory resource properties."
+    },
+    "FactoryRepoConfiguration": {
+      "type": "object",
+      "oneOf": [
+        {
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "FactoryRepoConfiguration"
+              ]
+            }
+          }
+        }
+      ],
+      "properties": {
+        "accountName": {
+          "type": "string",
+          "description": "Account name."
+        },
+        "repositoryName": {
+          "type": "string",
+          "description": "Repository name."
+        },
+        "collaborationBranch": {
+          "type": "string",
+          "description": "Collaboration branch."
+        },
+        "rootFolder": {
+          "type": "string",
+          "description": "Root folder."
+        },
+        "lastCommitId": {
+          "type": "string",
+          "description": "Last commit id."
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "accountName",
+        "repositoryName",
+        "collaborationBranch",
+        "rootFolder",
+        "type"
+      ],
+      "description": "Factory's git repo information."
+    },
+    "IntegrationRuntime": {
+      "type": "object",
+      "oneOf": [
+        {
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "IntegrationRuntime"
+              ]
+            }
+          }
+        }
+      ],
+      "properties": {
+        "additionalProperties": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Unmatched properties from the message are deserialized this collection"
+        },
+        "description": {
+          "type": "string",
+          "description": "Integration runtime description."
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "description": "Azure Data Factory nested object which serves as a compute resource for activities."
+    },
+    "IntegrationRuntimeReference": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "IntegrationRuntimeReference"
+          ],
+          "description": "Type of integration runtime."
+        },
+        "referenceName": {
+          "type": "string",
+          "description": "Reference integration runtime name."
+        },
+        "parameters": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "An object mapping parameter names to argument values."
+        }
+      },
+      "required": [
+        "type",
+        "referenceName"
+      ],
+      "description": "Integration runtime reference type."
+    },
+    "LinkedService": {
+      "type": "object",
+      "oneOf": [
+        {
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "LinkedService"
+              ]
+            }
+          }
+        }
+      ],
+      "properties": {
+        "additionalProperties": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Unmatched properties from the message are deserialized this collection"
+        },
+        "connectVia": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/IntegrationRuntimeReference"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Integration runtime reference type."
+        },
+        "description": {
+          "type": "string",
+          "description": "Linked service description."
+        },
+        "parameters": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/ParameterSpecification"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Definition of all parameters for an entity."
+        },
+        "annotations": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "List of tags that can be used for describing the Dataset."
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "description": "The Azure Data Factory nested object which contains the information and credential which can be used to connect with related store or compute resource."
+    },
+    "LinkedServiceReference": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "LinkedServiceReference"
+          ],
+          "description": "Linked service reference type."
+        },
+        "referenceName": {
+          "type": "string",
+          "description": "Reference LinkedService name."
+        },
+        "parameters": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "An object mapping parameter names to argument values."
+        }
+      },
+      "required": [
+        "type",
+        "referenceName"
+      ],
+      "description": "Linked service reference type."
+    },
+    "ParameterSpecification": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "Object",
+            "String",
+            "Int",
+            "Float",
+            "Bool",
+            "Array",
+            "SecureString"
+          ],
+          "description": "Parameter type."
+        },
+        "defaultValue": {
+          "description": "Default value of parameter."
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "description": "Definition of a single parameter for an entity."
+    },
+    "Pipeline": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "description": "The description of the pipeline."
+        },
+        "activities": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Activity"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "List of activities in pipeline."
+        },
+        "parameters": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/ParameterSpecification"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Definition of all parameters for an entity."
+        },
+        "variables": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/VariableSpecification"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Definition of variable for a Pipeline."
+        },
+        "concurrency": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The max number of concurrent runs for the pipeline."
+        },
+        "annotations": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "List of tags that can be used for describing the Pipeline."
+        },
+        "folder": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PipelineFolder"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The folder that this Pipeline is in. If not specified, Pipeline will appear at the root level."
+        }
+      },
+      "description": "A data factory pipeline."
+    },
+    "PipelineFolder": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the folder that this Pipeline is in."
+        }
+      },
+      "description": "The folder that this Pipeline is in. If not specified, Pipeline will appear at the root level."
+    },
+    "RerunTumblingWindowTrigger": {
+      "type": "object",
+      "oneOf": [
+        {
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "RerunTumblingWindowTrigger"
+              ]
+            }
+          }
+        }
+      ],
+      "properties": {
+        "typeProperties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/RerunTumblingWindowTriggerTypeProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Rerun Trigger properties."
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "typeProperties",
+        "type"
+      ],
+      "description": "Trigger that schedules pipeline reruns for all fixed time interval windows from a requested start time to requested end time."
+    },
+    "RerunTumblingWindowTriggerTypeProperties": {
+      "type": "object",
+      "properties": {
+        "parentTrigger": {
+          "description": "The parent trigger reference."
+        },
+        "requestedStartTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The start time for the time period for which restatement is initiated. Only UTC time is currently supported."
+        },
+        "requestedEndTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The end time for the time period for which restatement is initiated. Only UTC time is currently supported."
+        },
+        "maxConcurrency": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 50
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The max number of parallel time windows (ready for execution) for which a rerun is triggered."
+        }
+      },
+      "required": [
+        "requestedStartTime",
+        "requestedEndTime",
+        "maxConcurrency"
+      ],
+      "description": "Rerun Trigger properties."
+    },
+    "Trigger": {
+      "type": "object",
+      "oneOf": [
+        {
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "Trigger"
+              ]
+            }
+          }
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/definitions/RerunTumblingWindowTrigger"
+            }
+          ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "RerunTumblingWindowTrigger"
+              ]
+            }
+          }
+        }
+      ],
+      "properties": {
+        "additionalProperties": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {}
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Unmatched properties from the message are deserialized this collection"
+        },
+        "description": {
+          "type": "string",
+          "description": "Trigger description."
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "description": "Azure data factory nested object which contains information about creating pipeline run"
+    },
+    "UserProperty": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "User property name."
+        },
+        "value": {
+          "description": "User property value. Type: string (or Expression with resultType string)."
+        }
+      },
+      "required": [
+        "name",
+        "value"
+      ],
+      "description": "User property."
+    },
+    "VariableSpecification": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "String",
+            "Bool",
+            "Array"
+          ],
+          "description": "Variable type."
+        },
+        "defaultValue": {
+          "description": "Default value of variable."
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "description": "Definition of a single variable for a Pipeline."
+    }
+  }
+}

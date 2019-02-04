@@ -1,0 +1,866 @@
+{
+  "id": "https://schema.management.azure.com/schemas/2015-01-14-preview/Microsoft.Intune.json#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Microsoft.Intune",
+  "description": "Microsoft Intune Resource Types",
+  "resourceDefinitions": {
+    "locations_androidPolicies": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Unique name for the policy"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.Intune/locations/androidPolicies"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2015-01-14-preview"
+          ]
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Resource Tags"
+        },
+        "location": {
+          "type": "string",
+          "description": "Resource Location"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AndroidMAMPolicyProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Intune MAM iOS Policy Properties."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/locations_androidPolicies_groups_childResource"
+              },
+              {
+                "$ref": "#/definitions/locations_androidPolicies_apps_childResource"
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.Intune/locations/androidPolicies"
+    },
+    "locations_androidPolicies_apps": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "application unique Name"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.Intune/locations/androidPolicies/apps"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2015-01-14-preview"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MAMPolicyAppOrGroupIdProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Android Policy request body for Intune MAM."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.Intune/locations/androidPolicies/apps"
+    },
+    "locations_androidPolicies_groups": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "group Id"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.Intune/locations/androidPolicies/groups"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2015-01-14-preview"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MAMPolicyAppOrGroupIdProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Android Policy request body for Intune MAM."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.Intune/locations/androidPolicies/groups"
+    },
+    "locations_iosPolicies": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Unique name for the policy"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.Intune/locations/iosPolicies"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2015-01-14-preview"
+          ]
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Resource Tags"
+        },
+        "location": {
+          "type": "string",
+          "description": "Resource Location"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/IOSMAMPolicyProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Intune MAM iOS Policy Properties."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/locations_iosPolicies_groups_childResource"
+              },
+              {
+                "$ref": "#/definitions/locations_iosPolicies_apps_childResource"
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.Intune/locations/iosPolicies"
+    },
+    "locations_iosPolicies_apps": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "application unique Name"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.Intune/locations/iosPolicies/apps"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2015-01-14-preview"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MAMPolicyAppOrGroupIdProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Android Policy request body for Intune MAM."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.Intune/locations/iosPolicies/apps"
+    },
+    "locations_iosPolicies_groups": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "group Id"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.Intune/locations/iosPolicies/groups"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2015-01-14-preview"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MAMPolicyAppOrGroupIdProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Android Policy request body for Intune MAM."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.Intune/locations/iosPolicies/groups"
+    }
+  },
+  "definitions": {
+    "AndroidMAMPolicyProperties": {
+      "type": "object",
+      "properties": {
+        "friendlyName": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "appSharingFromLevel": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "none",
+                "policyManagedApps",
+                "allApps"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ]
+        },
+        "appSharingToLevel": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "none",
+                "policyManagedApps",
+                "allApps"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ]
+        },
+        "authentication": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "required",
+                "notRequired"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ]
+        },
+        "clipboardSharingLevel": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "blocked",
+                "policyManagedApps",
+                "policyManagedAppsWithPasteIn",
+                "allApps"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ]
+        },
+        "dataBackup": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "allow",
+                "block"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ]
+        },
+        "fileSharingSaveAs": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "allow",
+                "block"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ]
+        },
+        "pin": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "required",
+                "notRequired"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ]
+        },
+        "pinNumRetry": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ]
+        },
+        "deviceCompliance": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "enable",
+                "disable"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ]
+        },
+        "managedBrowser": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "required",
+                "notRequired"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ]
+        },
+        "accessRecheckOfflineTimeout": {
+          "type": "string",
+          "format": "duration"
+        },
+        "accessRecheckOnlineTimeout": {
+          "type": "string",
+          "format": "duration"
+        },
+        "offlineWipeTimeout": {
+          "type": "string",
+          "format": "duration"
+        },
+        "screenCapture": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "allow",
+                "block"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ]
+        },
+        "fileEncryption": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "required",
+                "notRequired"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ]
+        }
+      },
+      "required": [
+        "friendlyName"
+      ],
+      "description": "Intune MAM iOS Policy Properties."
+    },
+    "IOSMAMPolicyProperties": {
+      "type": "object",
+      "properties": {
+        "friendlyName": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "appSharingFromLevel": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "none",
+                "policyManagedApps",
+                "allApps"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ]
+        },
+        "appSharingToLevel": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "none",
+                "policyManagedApps",
+                "allApps"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ]
+        },
+        "authentication": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "required",
+                "notRequired"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ]
+        },
+        "clipboardSharingLevel": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "blocked",
+                "policyManagedApps",
+                "policyManagedAppsWithPasteIn",
+                "allApps"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ]
+        },
+        "dataBackup": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "allow",
+                "block"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ]
+        },
+        "fileSharingSaveAs": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "allow",
+                "block"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ]
+        },
+        "pin": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "required",
+                "notRequired"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ]
+        },
+        "pinNumRetry": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ]
+        },
+        "deviceCompliance": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "enable",
+                "disable"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ]
+        },
+        "managedBrowser": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "required",
+                "notRequired"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ]
+        },
+        "accessRecheckOfflineTimeout": {
+          "type": "string",
+          "format": "duration"
+        },
+        "accessRecheckOnlineTimeout": {
+          "type": "string",
+          "format": "duration"
+        },
+        "offlineWipeTimeout": {
+          "type": "string",
+          "format": "duration"
+        },
+        "fileEncryptionLevel": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "deviceLocked",
+                "deviceLockedExceptFilesOpen",
+                "afterDeviceRestart",
+                "useDeviceSettings"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ]
+        },
+        "touchId": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "enable",
+                "disable"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ]
+        }
+      },
+      "required": [
+        "friendlyName"
+      ],
+      "description": "Intune MAM iOS Policy Properties."
+    },
+    "locations_androidPolicies_apps_childResource": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "application unique Name"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "apps"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2015-01-14-preview"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MAMPolicyAppOrGroupIdProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Android Policy request body for Intune MAM."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.Intune/locations/androidPolicies/apps"
+    },
+    "locations_androidPolicies_groups_childResource": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "group Id"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "groups"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2015-01-14-preview"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MAMPolicyAppOrGroupIdProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Android Policy request body for Intune MAM."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.Intune/locations/androidPolicies/groups"
+    },
+    "locations_iosPolicies_apps_childResource": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "application unique Name"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "apps"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2015-01-14-preview"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MAMPolicyAppOrGroupIdProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Android Policy request body for Intune MAM."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.Intune/locations/iosPolicies/apps"
+    },
+    "locations_iosPolicies_groups_childResource": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "group Id"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "groups"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2015-01-14-preview"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/MAMPolicyAppOrGroupIdProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Android Policy request body for Intune MAM."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.Intune/locations/iosPolicies/groups"
+    },
+    "MAMPolicyAppOrGroupIdProperties": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "url"
+      ],
+      "description": "Android Policy request body for Intune MAM."
+    }
+  }
+}

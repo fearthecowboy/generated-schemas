@@ -1,0 +1,161 @@
+{
+  "id": "https://schema.management.azure.com/schemas/2018-03-01-preview/Microsoft.Management.json#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Microsoft.Management",
+  "description": "Microsoft Management Resource Types",
+  "resourceDefinitions": {
+    "managementGroups": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Management Group ID."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.Management/managementGroups"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-03-01-preview"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CreateManagementGroupProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The generic properties of a management group used during creation."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/managementGroups_subscriptions_childResource"
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.Management/managementGroups"
+    },
+    "managementGroups_subscriptions": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Subscription ID."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.Management/managementGroups/subscriptions"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-03-01-preview"
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion"
+      ],
+      "description": "Microsoft.Management/managementGroups/subscriptions"
+    }
+  },
+  "definitions": {
+    "CreateManagementGroupDetails": {
+      "type": "object",
+      "properties": {
+        "parent": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CreateParentGroupInfo"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "(Optional) The ID of the parent management group used during creation."
+        }
+      },
+      "description": "The details of a management group used during creation."
+    },
+    "CreateManagementGroupProperties": {
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "description": "The friendly name of the management group. If no value is passed then this  field will be set to the groupId."
+        },
+        "details": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CreateManagementGroupDetails"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The details of a management group used during creation."
+        }
+      },
+      "description": "The generic properties of a management group used during creation."
+    },
+    "CreateParentGroupInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The fully qualified ID for the parent management group.  For example, /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000"
+        }
+      },
+      "description": "(Optional) The ID of the parent management group used during creation."
+    },
+    "managementGroups_subscriptions_childResource": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Subscription ID."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "subscriptions"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-03-01-preview"
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion"
+      ],
+      "description": "Microsoft.Management/managementGroups/subscriptions"
+    }
+  }
+}

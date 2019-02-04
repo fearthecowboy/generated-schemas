@@ -5,7 +5,13 @@ $ErrorActionPreference  = "stop"
 # This script requires the following:
 # git
 
-
+# failures:
+#   authorization 
+#   apimanagement
+#   azure-kusto
+#   batch
+#   billing
+#   compute
 
 ## ===========================================================================
 # script
@@ -36,10 +42,11 @@ if( -not (test-path $restSpecs)) {
 
 # autorest --azureresourceschema --api-version:XXXX-YY-ZZ  --output-folder:$(csaharpsdk) --MYSDKFOLDER:/foo/bar/bing/
 
+$txt = "";
 
 // get all readme.md files 
 # $allreadmes = get-childitem $restSpecs\readme.md -recurse  | where { $_.FullName -match "resource.manager" }
-$allreadmes = get-childitem tmp\azure-rest-api-specs\readme.md -recurse  | where { $_.FullName -match "resource.manager" } |where {$_.FullName -match "redis" } 
+$allreadmes = get-childitem tmp\azure-rest-api-specs\readme.md -recurse  | where { $_.FullName -match "resource.manager" }  #|where {$_.FullName -match "batch" } 
 
 # (select-string -Path C:\work\2019\generated-schemas\tmp\azure-rest-api-specs\specification\compute\resource-manager\readme.md -Pattern "\(tag\).*'(.*)'" |% { $_.Matches } | % { $_.groups[1].value } | Group-Object).Name
 
@@ -54,11 +61,16 @@ $allreadmes |% {
 
   => On "$file `n => found api versions : $apiversions `n`n" 
   $apiversions |% {
-    // run autorest on $file with --api-version:$_  
+    # // run autorest on $file with --api-version:$_  
     # // node c:\work\2019\autorest\src\autorest\dist\app --enable-multi-api --use=C:\work\2019\autorest.azureresourceschema --azureresourceschema $file --output-folder=./tmp/schemas "--api-version:$_" --verbose --debug
     # node c:\work\2019\autorest\src\autorest\dist\app --enable-multi-api --use=C:\work\2019\autorest.azureresourceschema --azureresourceschema $file --output-folder=./tmp/schemas "--api-version:$_" 
-    autorest --use=C:\work\2019\autorest.azureresourceschema --azureresourceschema $file --output-folder=./tmp/schemas "--api-version:$_" 
-    
+    write-host autorest --use=C:\work\2019\autorest.azureresourceschema --enable-multi-api  --azureresourceschema $file --output-folder=./tmp/schemas "--api-version:$_" 
+    node --max-old-space-size=16384 c:\work\2019\autorest\src\autorest\dist\app --use=C:\work\2019\autorest.azureresourceschema --enable-multi-api  --azureresourceschema $file --output-folder=./tmp/schemas "--api-version:$_" 
+    $v = $LastExitCode
+    if( $v -ne 0 ) {
+      $txt =  "$txt`n$file - $_"
+      write-host $txt
+    }
   }
   <#
   $tags  = (select-string -Path $file -Pattern "\(tag\).*'(.*)'" |% { $_.Matches } | % { $_.groups[1].value } | Group-Object).Name

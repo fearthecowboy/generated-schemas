@@ -1,0 +1,1500 @@
+{
+  "id": "https://schema.management.azure.com/schemas/2018-01-10/Microsoft.RecoveryServices.json#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Microsoft.RecoveryServices",
+  "description": "Microsoft RecoveryServices Resource Types",
+  "resourceDefinitions": {
+    "vaults_replicationAlertSettings": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the email notification configuration."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.RecoveryServices/vaults/replicationAlertSettings"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-01-10"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ConfigureAlertRequestProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of a configure alert request."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.RecoveryServices/vaults/replicationAlertSettings"
+    },
+    "vaults_replicationFabrics": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Fabric name."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.RecoveryServices/vaults/replicationFabrics"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-01-10"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/FabricCreationInputProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of site details provided during the time of site creation"
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/vaults_replicationFabrics_replicationvCenters_childResource"
+              },
+              {
+                "$ref": "#/definitions/vaults_replicationFabrics_replicationRecoveryServicesProviders_childResource"
+              },
+              {
+                "$ref": "#/definitions/vaults_replicationFabrics_replicationProtectionContainers_childResource"
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.RecoveryServices/vaults/replicationFabrics"
+    },
+    "vaults_replicationFabrics_replicationNetworks_replicationNetworkMappings": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Network mapping name."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.RecoveryServices/vaults/replicationFabrics/replicationNetworks/replicationNetworkMappings"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-01-10"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CreateNetworkMappingInputProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Common input details for network mapping operation."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.RecoveryServices/vaults/replicationFabrics/replicationNetworks/replicationNetworkMappings"
+    },
+    "vaults_replicationFabrics_replicationProtectionContainers": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Protection container name."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-01-10"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CreateProtectionContainerInputProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Create protection container input properties."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/vaults_replicationFabrics_replicationProtectionContainers_replicationProtectionContainerMappings_childResource"
+              },
+              {
+                "$ref": "#/definitions/vaults_replicationFabrics_replicationProtectionContainers_replicationProtectedItems_childResource"
+              },
+              {
+                "$ref": "#/definitions/vaults_replicationFabrics_replicationProtectionContainers_replicationMigrationItems_childResource"
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers"
+    },
+    "vaults_replicationFabrics_replicationProtectionContainers_replicationMigrationItems": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Migration item name."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers/replicationMigrationItems"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-01-10"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/EnableMigrationInputProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Enable migration input properties."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers/replicationMigrationItems"
+    },
+    "vaults_replicationFabrics_replicationProtectionContainers_replicationProtectedItems": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Replication protected item name."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers/replicationProtectedItems"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-01-10"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/EnableProtectionInputProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Enable protection input properties."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers/replicationProtectedItems"
+    },
+    "vaults_replicationFabrics_replicationProtectionContainers_replicationProtectionContainerMappings": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Protection Container mapping name."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers/replicationProtectionContainerMappings"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-01-10"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CreateProtectionContainerMappingInputProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Configure pairing input properties."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers/replicationProtectionContainerMappings"
+    },
+    "vaults_replicationFabrics_replicationRecoveryServicesProviders": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Recovery services provider name"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.RecoveryServices/vaults/replicationFabrics/replicationRecoveryServicesProviders"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-01-10"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AddRecoveryServicesProviderInputProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of an add provider request."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.RecoveryServices/vaults/replicationFabrics/replicationRecoveryServicesProviders"
+    },
+    "vaults_replicationFabrics_replicationStorageClassifications_replicationStorageClassificationMappings": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Storage classification mapping name."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.RecoveryServices/vaults/replicationFabrics/replicationStorageClassifications/replicationStorageClassificationMappings"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-01-10"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/StorageMappingInputProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Storage mapping input properties."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.RecoveryServices/vaults/replicationFabrics/replicationStorageClassifications/replicationStorageClassificationMappings"
+    },
+    "vaults_replicationFabrics_replicationvCenters": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "vCenter name."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.RecoveryServices/vaults/replicationFabrics/replicationvCenters"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-01-10"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AddVCenterRequestProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of an add vCenter request."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.RecoveryServices/vaults/replicationFabrics/replicationvCenters"
+    },
+    "vaults_replicationPolicies": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Replication policy name."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.RecoveryServices/vaults/replicationPolicies"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-01-10"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CreatePolicyInputProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Policy creation properties."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.RecoveryServices/vaults/replicationPolicies"
+    },
+    "vaults_replicationRecoveryPlans": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the recovery plan."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.RecoveryServices/vaults/replicationRecoveryPlans"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-01-10"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CreateRecoveryPlanInputProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Recovery plan creation properties."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.RecoveryServices/vaults/replicationRecoveryPlans"
+    }
+  },
+  "definitions": {
+    "AddRecoveryServicesProviderInputProperties": {
+      "type": "object",
+      "properties": {
+        "machineName": {
+          "type": "string",
+          "description": "The name of the machine where the provider is getting added."
+        },
+        "authenticationIdentityInput": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/IdentityProviderInput"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Identity provider input."
+        },
+        "resourceAccessIdentityInput": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/IdentityProviderInput"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Identity provider input."
+        }
+      },
+      "required": [
+        "machineName",
+        "authenticationIdentityInput",
+        "resourceAccessIdentityInput"
+      ],
+      "description": "The properties of an add provider request."
+    },
+    "AddVCenterRequestProperties": {
+      "type": "object",
+      "properties": {
+        "friendlyName": {
+          "type": "string",
+          "description": "The friendly name of the vCenter."
+        },
+        "ipAddress": {
+          "type": "string",
+          "description": "The IP address of the vCenter to be discovered."
+        },
+        "processServerId": {
+          "type": "string",
+          "description": "The process server Id from where the discovery is orchestrated."
+        },
+        "port": {
+          "type": "string",
+          "description": "The port number for discovery."
+        },
+        "runAsAccountId": {
+          "type": "string",
+          "description": "The account Id which has privileges to discover the vCenter."
+        }
+      },
+      "description": "The properties of an add vCenter request."
+    },
+    "ConfigureAlertRequestProperties": {
+      "type": "object",
+      "properties": {
+        "sendToOwners": {
+          "type": "string",
+          "description": "A value indicating whether to send email to subscription administrator."
+        },
+        "customEmailAddresses": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The custom email address for sending emails."
+        },
+        "locale": {
+          "type": "string",
+          "description": "The locale for the email notification."
+        }
+      },
+      "description": "Properties of a configure alert request."
+    },
+    "CreateNetworkMappingInputProperties": {
+      "type": "object",
+      "properties": {
+        "recoveryFabricName": {
+          "type": "string",
+          "description": "Recovery fabric Name."
+        },
+        "recoveryNetworkId": {
+          "type": "string",
+          "description": "Recovery network Id."
+        },
+        "fabricSpecificDetails": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/FabricSpecificCreateNetworkMappingInput"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Input details specific to fabrics during Network Mapping."
+        }
+      },
+      "description": "Common input details for network mapping operation."
+    },
+    "CreatePolicyInputProperties": {
+      "type": "object",
+      "properties": {
+        "providerSpecificInput": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PolicyProviderSpecificInput"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Base class for provider specific input"
+        }
+      },
+      "description": "Policy creation properties."
+    },
+    "CreateProtectionContainerInputProperties": {
+      "type": "object",
+      "properties": {
+        "providerSpecificInput": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ReplicationProviderSpecificContainerCreationInput"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Provider specific inputs for container creation."
+        }
+      },
+      "description": "Create protection container input properties."
+    },
+    "CreateProtectionContainerMappingInputProperties": {
+      "type": "object",
+      "properties": {
+        "targetProtectionContainerId": {
+          "type": "string",
+          "description": "The target unique protection container name."
+        },
+        "policyId": {
+          "type": "string",
+          "description": "Applicable policy."
+        },
+        "providerSpecificInput": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ReplicationProviderSpecificContainerMappingInput"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Provider specific input for pairing operations."
+        }
+      },
+      "description": "Configure pairing input properties."
+    },
+    "CreateRecoveryPlanInputProperties": {
+      "type": "object",
+      "properties": {
+        "primaryFabricId": {
+          "type": "string",
+          "description": "The primary fabric Id."
+        },
+        "recoveryFabricId": {
+          "type": "string",
+          "description": "The recovery fabric Id."
+        },
+        "failoverDeploymentModel": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "NotApplicable",
+                "Classic",
+                "ResourceManager"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The failover deployment model."
+        },
+        "groups": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/RecoveryPlanGroup"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The recovery plan groups."
+        }
+      },
+      "required": [
+        "primaryFabricId",
+        "recoveryFabricId",
+        "groups"
+      ],
+      "description": "Recovery plan creation properties."
+    },
+    "EnableMigrationInputProperties": {
+      "type": "object",
+      "properties": {
+        "policyId": {
+          "type": "string",
+          "description": "The policy Id."
+        },
+        "providerSpecificDetails": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/EnableMigrationProviderSpecificInput"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Enable migration provider specific input."
+        }
+      },
+      "required": [
+        "policyId",
+        "providerSpecificDetails"
+      ],
+      "description": "Enable migration input properties."
+    },
+    "EnableMigrationProviderSpecificInput": {
+      "type": "object",
+      "oneOf": [
+        {
+          "properties": {
+            "instanceType": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "EnableMigrationProviderSpecificInput"
+                  ]
+                },
+                {
+                  "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "properties": {
+        "instanceType": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "instanceType"
+      ],
+      "description": "Enable migration provider specific input."
+    },
+    "EnableProtectionInputProperties": {
+      "type": "object",
+      "properties": {
+        "policyId": {
+          "type": "string",
+          "description": "The Policy Id."
+        },
+        "protectableItemId": {
+          "type": "string",
+          "description": "The protectable item Id."
+        },
+        "providerSpecificDetails": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/EnableProtectionProviderSpecificInput"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Enable protection provider specific input."
+        }
+      },
+      "description": "Enable protection input properties."
+    },
+    "EnableProtectionProviderSpecificInput": {
+      "type": "object",
+      "oneOf": [
+        {
+          "properties": {
+            "instanceType": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "EnableProtectionProviderSpecificInput"
+                  ]
+                },
+                {
+                  "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "properties": {
+        "instanceType": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "instanceType"
+      ],
+      "description": "Enable protection provider specific input."
+    },
+    "FabricCreationInputProperties": {
+      "type": "object",
+      "properties": {
+        "customDetails": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/FabricSpecificCreationInput"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Fabric provider specific settings."
+        }
+      },
+      "description": "Properties of site details provided during the time of site creation"
+    },
+    "FabricSpecificCreateNetworkMappingInput": {
+      "type": "object",
+      "oneOf": [
+        {
+          "properties": {
+            "instanceType": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "FabricSpecificCreateNetworkMappingInput"
+                  ]
+                },
+                {
+                  "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "properties": {
+        "instanceType": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "instanceType"
+      ],
+      "description": "Input details specific to fabrics during Network Mapping."
+    },
+    "FabricSpecificCreationInput": {
+      "type": "object",
+      "oneOf": [
+        {
+          "properties": {
+            "instanceType": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "FabricSpecificCreationInput"
+                  ]
+                },
+                {
+                  "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "properties": {
+        "instanceType": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "instanceType"
+      ],
+      "description": "Fabric provider specific settings."
+    },
+    "IdentityProviderInput": {
+      "type": "object",
+      "properties": {
+        "tenantId": {
+          "type": "string",
+          "description": "The tenant Id for the service principal with which the on-premise management/data plane components would communicate with our Azure services."
+        },
+        "applicationId": {
+          "type": "string",
+          "description": "The application/client Id for the service principal with which the on-premise management/data plane components would communicate with our Azure services."
+        },
+        "objectId": {
+          "type": "string",
+          "description": "The object Id of the service principal with which the on-premise management/data plane components would communicate with our Azure services."
+        },
+        "audience": {
+          "type": "string",
+          "description": "The intended Audience of the service principal with which the on-premise management/data plane components would communicate with our Azure services."
+        },
+        "aadAuthority": {
+          "type": "string",
+          "description": "The base authority for Azure Active Directory authentication."
+        }
+      },
+      "required": [
+        "tenantId",
+        "applicationId",
+        "objectId",
+        "audience",
+        "aadAuthority"
+      ],
+      "description": "Identity provider input."
+    },
+    "PolicyProviderSpecificInput": {
+      "type": "object",
+      "oneOf": [
+        {
+          "properties": {
+            "instanceType": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "PolicyProviderSpecificInput"
+                  ]
+                },
+                {
+                  "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "properties": {
+        "instanceType": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "instanceType"
+      ],
+      "description": "Base class for provider specific input"
+    },
+    "RecoveryPlanAction": {
+      "type": "object",
+      "properties": {
+        "actionName": {
+          "type": "string",
+          "description": "The action name."
+        },
+        "failoverTypes": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ReverseReplicate",
+                  "Commit",
+                  "PlannedFailover",
+                  "UnplannedFailover",
+                  "DisableProtection",
+                  "TestFailover",
+                  "TestFailoverCleanup",
+                  "Failback",
+                  "FinalizeFailback",
+                  "ChangePit",
+                  "RepairReplication",
+                  "SwitchProtection",
+                  "CompleteMigration"
+                ]
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The list of failover types."
+        },
+        "failoverDirections": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "PrimaryToRecovery",
+                  "RecoveryToPrimary"
+                ]
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The list of failover directions."
+        },
+        "customDetails": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/RecoveryPlanActionDetails"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Recovery plan action custom details."
+        }
+      },
+      "required": [
+        "actionName",
+        "failoverTypes",
+        "failoverDirections",
+        "customDetails"
+      ],
+      "description": "Recovery plan action details."
+    },
+    "RecoveryPlanActionDetails": {
+      "type": "object",
+      "oneOf": [
+        {
+          "properties": {
+            "instanceType": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "RecoveryPlanActionDetails"
+                  ]
+                },
+                {
+                  "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "properties": {
+        "instanceType": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "instanceType"
+      ],
+      "description": "Recovery plan action custom details."
+    },
+    "RecoveryPlanGroup": {
+      "type": "object",
+      "properties": {
+        "groupType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Shutdown",
+                "Boot",
+                "Failover"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The group type."
+        },
+        "replicationProtectedItems": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/RecoveryPlanProtectedItem"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The list of protected items."
+        },
+        "startGroupActions": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/RecoveryPlanAction"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The start group actions."
+        },
+        "endGroupActions": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/RecoveryPlanAction"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The end group actions."
+        }
+      },
+      "required": [
+        "groupType"
+      ],
+      "description": "Recovery plan group details."
+    },
+    "RecoveryPlanProtectedItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The ARM Id of the recovery plan protected item."
+        },
+        "virtualMachineId": {
+          "type": "string",
+          "description": "The virtual machine Id."
+        }
+      },
+      "description": "Recovery plan protected item."
+    },
+    "ReplicationProviderSpecificContainerCreationInput": {
+      "type": "object",
+      "oneOf": [
+        {
+          "properties": {
+            "instanceType": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "ReplicationProviderSpecificContainerCreationInput"
+                  ]
+                },
+                {
+                  "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "properties": {
+        "instanceType": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "instanceType"
+      ],
+      "description": "Provider specific input for container creation operation."
+    },
+    "ReplicationProviderSpecificContainerMappingInput": {
+      "type": "object",
+      "oneOf": [
+        {
+          "properties": {
+            "instanceType": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "ReplicationProviderSpecificContainerMappingInput"
+                  ]
+                },
+                {
+                  "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "properties": {
+        "instanceType": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "instanceType"
+      ],
+      "description": "Provider specific input for pairing operations."
+    },
+    "StorageMappingInputProperties": {
+      "type": "object",
+      "properties": {
+        "targetStorageClassificationId": {
+          "type": "string",
+          "description": "The ID of the storage object."
+        }
+      },
+      "description": "Storage mapping input properties."
+    },
+    "vaults_replicationFabrics_replicationProtectionContainers_childResource": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Protection container name."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "replicationProtectionContainers"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-01-10"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CreateProtectionContainerInputProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Create protection container input properties."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/vaults_replicationFabrics_replicationProtectionContainers_replicationProtectionContainerMappings_childResource"
+              },
+              {
+                "$ref": "#/definitions/vaults_replicationFabrics_replicationProtectionContainers_replicationProtectedItems_childResource"
+              },
+              {
+                "$ref": "#/definitions/vaults_replicationFabrics_replicationProtectionContainers_replicationMigrationItems_childResource"
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers"
+    },
+    "vaults_replicationFabrics_replicationProtectionContainers_replicationMigrationItems_childResource": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Migration item name."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "replicationMigrationItems"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-01-10"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/EnableMigrationInputProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Enable migration input properties."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers/replicationMigrationItems"
+    },
+    "vaults_replicationFabrics_replicationProtectionContainers_replicationProtectedItems_childResource": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Replication protected item name."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "replicationProtectedItems"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-01-10"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/EnableProtectionInputProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Enable protection input properties."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers/replicationProtectedItems"
+    },
+    "vaults_replicationFabrics_replicationProtectionContainers_replicationProtectionContainerMappings_childResource": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Protection Container mapping name."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "replicationProtectionContainerMappings"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-01-10"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CreateProtectionContainerMappingInputProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Configure pairing input properties."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers/replicationProtectionContainerMappings"
+    },
+    "vaults_replicationFabrics_replicationRecoveryServicesProviders_childResource": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Recovery services provider name"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "replicationRecoveryServicesProviders"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-01-10"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AddRecoveryServicesProviderInputProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of an add provider request."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.RecoveryServices/vaults/replicationFabrics/replicationRecoveryServicesProviders"
+    },
+    "vaults_replicationFabrics_replicationvCenters_childResource": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "vCenter name."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "replicationvCenters"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-01-10"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AddVCenterRequestProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The properties of an add vCenter request."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.RecoveryServices/vaults/replicationFabrics/replicationvCenters"
+    }
+  }
+}

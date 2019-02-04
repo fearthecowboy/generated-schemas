@@ -1,0 +1,266 @@
+{
+  "id": "https://schema.management.azure.com/schemas/2016-06-01/Microsoft.RecoveryServices.json#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Microsoft.RecoveryServices",
+  "description": "Microsoft RecoveryServices Resource Types",
+  "resourceDefinitions": {
+    "vaults_backupFabrics_protectionContainers_protectedItems": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the backup items whose files or folders will be restored."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.RecoveryServices/vaults/backupFabrics/protectionContainers/protectedItems"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2016-06-01"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "description": "Resource ID represents the complete path to the resource."
+        },
+        "location": {
+          "type": "string",
+          "description": "Resource location."
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Resource tags."
+        },
+        "eTag": {
+          "type": "string",
+          "description": "Optional ETag."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ProtectedItem"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The base class for backup items."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.RecoveryServices/vaults/backupFabrics/protectionContainers/protectedItems"
+    },
+    "vaults_backupPolicies": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The backup policy name used in this GET operation."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.RecoveryServices/vaults/backupPolicies"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2016-06-01"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "description": "Resource ID represents the complete path to the resource."
+        },
+        "location": {
+          "type": "string",
+          "description": "Resource location."
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Resource tags."
+        },
+        "eTag": {
+          "type": "string",
+          "description": "Optional ETag."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ProtectionPolicy"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The base class for a backup policy. Workload-specific backup policies are derived from this class."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.RecoveryServices/vaults/backupPolicies"
+    }
+  },
+  "definitions": {
+    "ProtectedItem": {
+      "type": "object",
+      "oneOf": [
+        {
+          "properties": {
+            "protectedItemType": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "ProtectedItem"
+                  ]
+                },
+                {
+                  "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "properties": {
+        "backupManagementType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Invalid",
+                "AzureIaasVM",
+                "MAB",
+                "DPM",
+                "AzureBackupServer",
+                "AzureSql"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The backup management type associated with the backup item."
+        },
+        "workloadType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Invalid",
+                "VM",
+                "FileFolder",
+                "AzureSqlDb",
+                "SQLDB",
+                "Exchange",
+                "Sharepoint",
+                "DPMUnknown"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The workload type for this item."
+        },
+        "sourceResourceId": {
+          "type": "string",
+          "description": "The ID of the resource to be backed up."
+        },
+        "policyId": {
+          "type": "string",
+          "description": "The ID of the backup policy associated with this backup item."
+        },
+        "lastRecoveryPoint": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The timestamp when the most recent backup copy was created for this backup item."
+        },
+        "protectedItemType": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "protectedItemType"
+      ],
+      "description": "The base class for backup items."
+    },
+    "ProtectionPolicy": {
+      "type": "object",
+      "oneOf": [
+        {
+          "properties": {
+            "backupManagementType": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "ProtectionPolicy"
+                  ]
+                },
+                {
+                  "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "properties": {
+        "protectedItemsCount": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The number of items associated with this policy."
+        },
+        "backupManagementType": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "backupManagementType"
+      ],
+      "description": "The base class for a backup policy. Workload-specific backup policies are derived from this class."
+    }
+  }
+}

@@ -1,0 +1,430 @@
+{
+  "id": "https://schema.management.azure.com/schemas/2017-08-01-preview/Microsoft.Security.json#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Microsoft.Security",
+  "description": "Microsoft Security Resource Types",
+  "resourceDefinitions": {
+    "advancedThreatProtectionSettings": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of setting: (MCAS/WDATP). Possible values include: 'MCAS', 'WDATP'"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.Security/advancedThreatProtectionSettings"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2017-08-01-preview"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AdvancedThreatProtectionProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The Advanced Threat Protection settings."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.Security/advancedThreatProtectionSettings"
+    },
+    "autoProvisioningSettings": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of setting: (MCAS/WDATP). Possible values include: 'MCAS', 'WDATP'"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.Security/autoProvisioningSettings"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2017-08-01-preview"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AutoProvisioningSettingProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "describes properties of an auto provisioning setting"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.Security/autoProvisioningSettings"
+    },
+    "informationProtectionPolicies": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "effective",
+                "custom"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Name of the information protection policy."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.Security/informationProtectionPolicies"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2017-08-01-preview"
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion"
+      ],
+      "description": "Microsoft.Security/informationProtectionPolicies"
+    },
+    "pricings": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "name of the pricing configuration"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.Security/pricings"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2017-08-01-preview"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PricingProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Pricing data"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.Security/pricings"
+    },
+    "securityContacts": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the security contact object"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.Security/securityContacts"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2017-08-01-preview"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SecurityContactProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "describes security contact properties"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.Security/securityContacts"
+    },
+    "settings": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "MCAS",
+                "WDATP"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Name of setting: (MCAS/WDATP)."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.Security/settings"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2017-08-01-preview"
+          ]
+        },
+        "kind": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "DataExportSetting",
+                "AlertSuppressionSetting"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "the kind of the settings string (DataExportSetting)."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "kind"
+      ],
+      "description": "Microsoft.Security/settings"
+    },
+    "workspaceSettings": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the security setting"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.Security/workspaceSettings"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2017-08-01-preview"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/WorkspaceSettingProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Workspace setting data"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.Security/workspaceSettings"
+    }
+  },
+  "definitions": {
+    "AdvancedThreatProtectionProperties": {
+      "type": "object",
+      "properties": {
+        "isEnabled": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Indicates whether Advanced Threat Protection is enabled."
+        }
+      },
+      "description": "The Advanced Threat Protection settings."
+    },
+    "AutoProvisioningSettingProperties": {
+      "type": "object",
+      "properties": {
+        "autoProvision": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "On",
+                "Off"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Describes what kind of security agent provisioning action to take."
+        }
+      },
+      "required": [
+        "autoProvision"
+      ],
+      "description": "describes properties of an auto provisioning setting"
+    },
+    "PricingProperties": {
+      "type": "object",
+      "properties": {
+        "pricingTier": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Free",
+                "Standard"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Pricing tier type."
+        }
+      },
+      "required": [
+        "pricingTier"
+      ],
+      "description": "Pricing data"
+    },
+    "SecurityContactProperties": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "The email of this security contact"
+        },
+        "phone": {
+          "type": "string",
+          "description": "The phone number of this security contact"
+        },
+        "alertNotifications": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "On",
+                "Off"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Whether to send security alerts notifications to the security contact."
+        },
+        "alertsToAdmins": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "On",
+                "Off"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Whether to send security alerts notifications to subscription admins."
+        }
+      },
+      "required": [
+        "email",
+        "alertNotifications",
+        "alertsToAdmins"
+      ],
+      "description": "describes security contact properties"
+    },
+    "WorkspaceSettingProperties": {
+      "type": "object",
+      "properties": {
+        "workspaceId": {
+          "type": "string",
+          "description": "The full Azure ID of the workspace to save the data in"
+        },
+        "scope": {
+          "type": "string",
+          "description": "All the VMs in this scope will send their security data to the mentioned workspace unless overridden by a setting with more specific scope"
+        }
+      },
+      "required": [
+        "workspaceId",
+        "scope"
+      ],
+      "description": "Workspace setting data"
+    }
+  }
+}

@@ -1,0 +1,301 @@
+{
+  "id": "https://schema.management.azure.com/schemas/2015-12-01-preview/Microsoft.Compute.Admin.json#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Microsoft.Compute.Admin",
+  "description": "Microsoft Compute Admin Resource Types",
+  "resourceDefinitions": {
+    "locations_artifactTypes_publishers_offers_skus_versions": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The version of the resource."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.Compute.Admin/locations/artifactTypes/publishers/offers/skus/versions"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2015-12-01-preview"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PlatformImageProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of platform image."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.Compute.Admin/locations/artifactTypes/publishers/offers/skus/versions"
+    },
+    "locations_artifactTypes_publishers_types_versions": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The version of the resource."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.Compute.Admin/locations/artifactTypes/publishers/types/versions"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2015-12-01-preview"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/VMExtensionProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of a Virtual Machine Extension Image."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.Compute.Admin/locations/artifactTypes/publishers/types/versions"
+    }
+  },
+  "definitions": {
+    "AzureBlob": {
+      "type": "object",
+      "properties": {
+        "uri": {
+          "type": "string",
+          "description": "URI to Azure or AzureStack blob."
+        }
+      },
+      "description": "Azure or AzureStack blob information."
+    },
+    "DataDisk": {
+      "type": "object",
+      "properties": {
+        "lun": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Logical unit number."
+        },
+        "uri": {
+          "type": "string",
+          "description": "Location of the disk template."
+        }
+      },
+      "description": "Information about datadisk."
+    },
+    "ImageDetails": {
+      "type": "object",
+      "properties": {
+        "billingPartNumber": {
+          "type": "string",
+          "description": "The part number is used to bill for software costs."
+        }
+      },
+      "description": "Information about the disk image."
+    },
+    "OsDisk": {
+      "type": "object",
+      "properties": {
+        "osType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Unknown",
+                "Windows",
+                "Linux"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Operating system type."
+        },
+        "uri": {
+          "type": "string",
+          "description": "Location of the disk."
+        }
+      },
+      "description": "Operating system disk."
+    },
+    "PlatformImageProperties": {
+      "type": "object",
+      "properties": {
+        "osDisk": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/OsDisk"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Operating system disk."
+        },
+        "dataDisks": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DataDisk"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Data disks used by the platform image."
+        },
+        "details": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ImageDetails"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Information about the disk image."
+        },
+        "provisioningState": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Creating",
+                "Failed",
+                "Succeeded",
+                "Canceled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Provisioning status of the platform image."
+        }
+      },
+      "description": "Properties of platform image."
+    },
+    "VMExtensionProperties": {
+      "type": "object",
+      "properties": {
+        "vmOsType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Unknown",
+                "Windows",
+                "Linux"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Target virtual machine operating system type necessary for deploying the extension handler."
+        },
+        "computeRole": {
+          "type": "string",
+          "description": "Compute role"
+        },
+        "vmScaleSetEnabled": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Value indicating whether the extension is enabled for virtual machine scale set support."
+        },
+        "supportMultipleExtensions": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "True if supports multiple extensions."
+        },
+        "isSystemExtension": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Indicates if the extension is for the system."
+        },
+        "sourceBlob": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AzureBlob"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Azure or AzureStack blob information."
+        },
+        "provisioningState": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Creating",
+                "Failed",
+                "Succeeded",
+                "Canceled"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Provisioning state of extension."
+        }
+      },
+      "description": "Properties of a Virtual Machine Extension Image."
+    }
+  }
+}

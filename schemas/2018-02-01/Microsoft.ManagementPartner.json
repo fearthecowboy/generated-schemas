@@ -1,0 +1,35 @@
+{
+  "id": "https://schema.management.azure.com/schemas/2018-02-01/Microsoft.ManagementPartner.json#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Microsoft.ManagementPartner",
+  "description": "Microsoft ManagementPartner Resource Types",
+  "resourceDefinitions": {
+    "partners": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Id of the Partner"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.ManagementPartner/partners"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-02-01"
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion"
+      ],
+      "description": "Microsoft.ManagementPartner/partners"
+    }
+  }
+}

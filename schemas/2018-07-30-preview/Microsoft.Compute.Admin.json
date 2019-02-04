@@ -1,0 +1,35 @@
+{
+  "id": "https://schema.management.azure.com/schemas/2018-07-30-preview/Microsoft.Compute.Admin.json#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Microsoft.Compute.Admin",
+  "description": "Microsoft Compute Admin Resource Types",
+  "resourceDefinitions": {
+    "locations_diskmigrationjobs": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The migration job guid name."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.Compute.Admin/locations/diskmigrationjobs"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-07-30-preview"
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion"
+      ],
+      "description": "Microsoft.Compute.Admin/locations/diskmigrationjobs"
+    }
+  }
+}

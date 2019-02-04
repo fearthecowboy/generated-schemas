@@ -1,0 +1,45 @@
+{
+  "id": "https://schema.management.azure.com/schemas/2018-08-31-preview/Microsoft.WorkloadMonitor.json#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Microsoft.WorkloadMonitor",
+  "description": "Microsoft WorkloadMonitor Resource Types",
+  "resourceDefinitions": {
+    "notificationSettings": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "default"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Default string modeled as parameter for URL to work correctly."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.WorkloadMonitor/notificationSettings"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-08-31-preview"
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion"
+      ],
+      "description": "Microsoft.WorkloadMonitor/notificationSettings"
+    }
+  }
+}

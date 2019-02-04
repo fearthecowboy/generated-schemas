@@ -1,0 +1,101 @@
+{
+  "id": "https://schema.management.azure.com/schemas/2018-09-01-preview/Microsoft.Authorization.json#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Microsoft.Authorization",
+  "description": "Microsoft Authorization Resource Types",
+  "resourceDefinitions": {
+    "roleAssignments": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the role assignment to delete."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.Authorization/roleAssignments"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-09-01-preview"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/RoleAssignmentProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Role assignment properties."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.Authorization/roleAssignments"
+    }
+  },
+  "definitions": {
+    "RoleAssignmentProperties": {
+      "type": "object",
+      "properties": {
+        "roleDefinitionId": {
+          "type": "string",
+          "description": "The role definition ID used in the role assignment."
+        },
+        "principalId": {
+          "type": "string",
+          "description": "The principal ID assigned to the role. This maps to the ID inside the Active Directory. It can point to a user, service principal, or security group."
+        },
+        "principalType": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "User",
+                "Group",
+                "ServicePrincipal",
+                "Unknown",
+                "DirectoryRoleTemplate",
+                "ForeignGroup",
+                "Application",
+                "MSI",
+                "DirectoryObjectOrGroup",
+                "Everyone"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The principal type of the assigned principal ID."
+        },
+        "canDelegate": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The delegation flag used for creating a role assignment"
+        }
+      },
+      "required": [
+        "roleDefinitionId",
+        "principalId"
+      ],
+      "description": "Role assignment properties."
+    }
+  }
+}
