@@ -1,0 +1,67 @@
+{
+  "id": "https://schema.management.azure.com/schemas/2017-11-01-preview/Microsoft.Subscription.json#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Microsoft.Subscription",
+  "description": "Microsoft Subscription Resource Types",
+  "resourceDefinitions": {
+    "subscriptionDefinitions": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the Azure subscription definition."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.Subscription/subscriptionDefinitions"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2017-11-01-preview"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/SubscriptionDefinitionProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The subscription definition properties."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.Subscription/subscriptionDefinitions"
+    }
+  },
+  "definitions": {
+    "SubscriptionDefinitionProperties": {
+      "type": "object",
+      "properties": {
+        "subscriptionDisplayName": {
+          "type": "string",
+          "description": "The display name of the subscription."
+        },
+        "offerType": {
+          "type": "string",
+          "description": "The offer type of the subscription. For example, MS-AZR-0017P (EnterpriseAgreement) and MS-AZR-0148P (EnterpriseAgreement devTest) are available."
+        },
+        "etag": {
+          "type": "string",
+          "description": "The etag the subscription definition."
+        }
+      },
+      "description": "The subscription definition properties."
+    }
+  }
+}
