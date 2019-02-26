@@ -1,0 +1,153 @@
+{
+  "id": "https://schema.management.azure.com/schemas/2016-05-01/Microsoft.Backup.Admin.json#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Microsoft.Backup.Admin",
+  "description": "Microsoft Backup Admin Resource Types",
+  "resourceDefinitions": {
+    "backupLocations": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the backup location."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.Backup.Admin/backupLocations"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2016-05-01"
+          ]
+        },
+        "location": {
+          "type": "string",
+          "description": "Location of the resource."
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "List of key value pairs."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/BackupLocationModel"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of a backup location."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.Backup.Admin/backupLocations"
+    }
+  },
+  "definitions": {
+    "BackupLocationModel": {
+      "type": "object",
+      "properties": {
+        "externalStoreDefault": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ExternalStore"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Information about an external storage location."
+        }
+      },
+      "description": "Properties of a backup location."
+    },
+    "ExternalStore": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "Path to the update location"
+        },
+        "userName": {
+          "type": "string",
+          "description": "Username to access the location."
+        },
+        "password": {
+          "type": "string",
+          "description": "Password to access the location."
+        },
+        "encryptionKeyBase64": {
+          "type": "string",
+          "description": "Encryption key."
+        },
+        "backupFrequencyInHours": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The interval, in hours, for the frequency that the scheduler takes a backup."
+        },
+        "availableCapacity": {
+          "type": "string",
+          "description": "Free space at the backup location."
+        },
+        "isBackupSchedulerEnabled": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "True if the backup scheduler is enabled."
+        },
+        "nextBackupTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The scheduled time of the next backup."
+        },
+        "lastBackupTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Time of backup."
+        },
+        "backupRetentionPeriodInDays": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The retention period, in days, for backs in the storage location."
+        }
+      },
+      "description": "Information about an external storage location."
+    }
+  }
+}

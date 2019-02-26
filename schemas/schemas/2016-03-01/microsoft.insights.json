@@ -1,0 +1,231 @@
+{
+  "id": "https://schema.management.azure.com/schemas/2016-03-01/microsoft.insights.json#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "microsoft.insights",
+  "description": "microsoft insights Resource Types",
+  "resourceDefinitions": {
+    "alertrules": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the rule."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "microsoft.insights/alertrules"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2016-03-01"
+          ]
+        },
+        "location": {
+          "type": "string",
+          "description": "Resource location"
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Resource tags"
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AlertRule"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "An alert rule."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "location",
+        "properties"
+      ],
+      "description": "microsoft.insights/alertrules"
+    }
+  },
+  "definitions": {
+    "AlertRule": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "the name of the alert rule."
+        },
+        "description": {
+          "type": "string",
+          "description": "the description of the alert rule that will be included in the alert email."
+        },
+        "isEnabled": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "the flag that indicates whether the alert rule is enabled."
+        },
+        "condition": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/RuleCondition"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The condition that results in the alert rule being activated."
+        },
+        "actions": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/RuleAction"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "the array of actions that are performed when the alert rule becomes active, and when an alert condition is resolved."
+        }
+      },
+      "required": [
+        "name",
+        "isEnabled",
+        "condition"
+      ],
+      "description": "An alert rule."
+    },
+    "RuleAction": {
+      "type": "object",
+      "oneOf": [
+        {
+          "properties": {
+            "odata.type": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "RuleAction"
+                  ]
+                },
+                {
+                  "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "properties": {
+        "odata.type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "odata.type"
+      ],
+      "description": "The action that is performed when the alert rule becomes active, and when an alert condition is resolved."
+    },
+    "RuleCondition": {
+      "type": "object",
+      "oneOf": [
+        {
+          "properties": {
+            "odata.type": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "RuleCondition"
+                  ]
+                },
+                {
+                  "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "properties": {
+        "dataSource": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/RuleDataSource"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The resource from which the rule collects its data."
+        },
+        "odata.type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "odata.type"
+      ],
+      "description": "The condition that results in the alert rule being activated."
+    },
+    "RuleDataSource": {
+      "type": "object",
+      "oneOf": [
+        {
+          "properties": {
+            "odata.type": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "RuleDataSource"
+                  ]
+                },
+                {
+                  "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "properties": {
+        "resourceUri": {
+          "type": "string",
+          "description": "the resource identifier of the resource the rule monitors. **NOTE**: this property cannot be updated for an existing rule."
+        },
+        "odata.type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "odata.type"
+      ],
+      "description": "The resource from which the rule collects its data."
+    }
+  }
+}

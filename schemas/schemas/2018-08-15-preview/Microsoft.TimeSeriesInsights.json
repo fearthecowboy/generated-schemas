@@ -1,0 +1,496 @@
+{
+  "id": "https://schema.management.azure.com/schemas/2018-08-15-preview/Microsoft.TimeSeriesInsights.json#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Microsoft.TimeSeriesInsights",
+  "description": "Microsoft TimeSeriesInsights Resource Types",
+  "resourceDefinitions": {
+    "environments": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the Time Series Insights environment associated with the specified resource group."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.TimeSeriesInsights/environments"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-08-15-preview"
+          ]
+        },
+        "location": {
+          "type": "string",
+          "description": "The location of the resource."
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Key-value pairs of additional properties for the resource."
+        },
+        "sku": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Sku"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The sku determines the type of environment, either standard (S1 or S2) or long-term (L1). For standard environments the sku determines the capacity of the environment, the ingress rate, and the billing rate."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/environments_accessPolicies_childResource"
+              },
+              {
+                "$ref": "#/definitions/environments_referenceDataSets_childResource"
+              },
+              {
+                "$ref": "#/definitions/environments_eventSources_childResource"
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "location",
+        "sku"
+      ],
+      "description": "Microsoft.TimeSeriesInsights/environments"
+    },
+    "environments_accessPolicies": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the Time Series Insights access policy associated with the specified environment."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.TimeSeriesInsights/environments/accessPolicies"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-08-15-preview"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AccessPolicyResourceProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.TimeSeriesInsights/environments/accessPolicies"
+    },
+    "environments_eventSources": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the Time Series Insights event source associated with the specified environment."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.TimeSeriesInsights/environments/eventSources"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-08-15-preview"
+          ]
+        },
+        "location": {
+          "type": "string",
+          "description": "The location of the resource."
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Key-value pairs of additional properties for the resource."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "location"
+      ],
+      "description": "Microsoft.TimeSeriesInsights/environments/eventSources"
+    },
+    "environments_referenceDataSets": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the Time Series Insights reference data set associated with the specified environment."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.TimeSeriesInsights/environments/referenceDataSets"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-08-15-preview"
+          ]
+        },
+        "location": {
+          "type": "string",
+          "description": "The location of the resource."
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Key-value pairs of additional properties for the resource."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ReferenceDataSetCreationProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties used to create a reference data set."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "location",
+        "properties"
+      ],
+      "description": "Microsoft.TimeSeriesInsights/environments/referenceDataSets"
+    }
+  },
+  "definitions": {
+    "AccessPolicyResourceProperties": {
+      "type": "object",
+      "properties": {
+        "principalObjectId": {
+          "type": "string",
+          "description": "The objectId of the principal in Azure Active Directory."
+        },
+        "description": {
+          "type": "string",
+          "description": "An description of the access policy."
+        },
+        "roles": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Reader",
+                  "Contributor"
+                ]
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The list of roles the principal is assigned on the environment."
+        }
+      }
+    },
+    "environments_accessPolicies_childResource": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the Time Series Insights access policy associated with the specified environment."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "accessPolicies"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-08-15-preview"
+          ]
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/AccessPolicyResourceProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.TimeSeriesInsights/environments/accessPolicies"
+    },
+    "environments_eventSources_childResource": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the Time Series Insights event source associated with the specified environment."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "eventSources"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-08-15-preview"
+          ]
+        },
+        "location": {
+          "type": "string",
+          "description": "The location of the resource."
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Key-value pairs of additional properties for the resource."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "location"
+      ],
+      "description": "Microsoft.TimeSeriesInsights/environments/eventSources"
+    },
+    "environments_referenceDataSets_childResource": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the Time Series Insights reference data set associated with the specified environment."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "referenceDataSets"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2018-08-15-preview"
+          ]
+        },
+        "location": {
+          "type": "string",
+          "description": "The location of the resource."
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Key-value pairs of additional properties for the resource."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ReferenceDataSetCreationProperties"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties used to create a reference data set."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "location",
+        "properties"
+      ],
+      "description": "Microsoft.TimeSeriesInsights/environments/referenceDataSets"
+    },
+    "ReferenceDataSetCreationProperties": {
+      "type": "object",
+      "properties": {
+        "keyProperties": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ReferenceDataSetKeyProperty"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The list of key properties for the reference data set."
+        },
+        "dataStringComparisonBehavior": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Ordinal",
+                "OrdinalIgnoreCase"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The reference data set key comparison behavior can be set using this property. By default, the value is 'Ordinal' - which means case sensitive key comparison will be performed while joining reference data with events or while adding new reference data. When 'OrdinalIgnoreCase' is set, case insensitive comparison will be used."
+        }
+      },
+      "required": [
+        "keyProperties"
+      ],
+      "description": "Properties used to create a reference data set."
+    },
+    "ReferenceDataSetKeyProperty": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the key property."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "String",
+            "Double",
+            "Bool",
+            "DateTime"
+          ],
+          "description": "The type of the key property."
+        }
+      },
+      "description": "A key property for the reference data set. A reference data set can have multiple key properties."
+    },
+    "Sku": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "S1",
+                "S2",
+                "L1"
+              ]
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The name of this SKU."
+        },
+        "capacity": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The capacity of the sku. For standard environments, this value can be changed to support scale out of environments after they have been created."
+        }
+      },
+      "required": [
+        "name",
+        "capacity"
+      ],
+      "description": "The sku determines the type of environment, either standard (S1 or S2) or long-term (L1). For standard environments the sku determines the capacity of the environment, the ingress rate, and the billing rate."
+    }
+  }
+}

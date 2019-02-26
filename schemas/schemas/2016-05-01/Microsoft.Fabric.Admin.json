@@ -1,0 +1,118 @@
+{
+  "id": "https://schema.management.azure.com/schemas/2016-05-01/Microsoft.Fabric.Admin.json#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Microsoft.Fabric.Admin",
+  "description": "Microsoft Fabric Admin Resource Types",
+  "resourceDefinitions": {
+    "fabricLocations_ipPools": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "IP pool name."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Microsoft.Fabric.Admin/fabricLocations/ipPools"
+          ]
+        },
+        "apiVersion": {
+          "type": "string",
+          "enum": [
+            "2016-05-01"
+          ]
+        },
+        "location": {
+          "type": "string",
+          "description": "The region where the resource is located."
+        },
+        "tags": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "List of key-value pairs."
+        },
+        "properties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/IpPoolModel"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "Properties of an IpPool."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "apiVersion",
+        "properties"
+      ],
+      "description": "Microsoft.Fabric.Admin/fabricLocations/ipPools"
+    }
+  },
+  "definitions": {
+    "IpPoolModel": {
+      "type": "object",
+      "properties": {
+        "startIpAddress": {
+          "type": "string",
+          "description": "The starting IP address."
+        },
+        "endIpAddress": {
+          "type": "string",
+          "description": "The ending IP address."
+        },
+        "addressPrefix": {
+          "type": "string",
+          "description": "The address prefix."
+        },
+        "numberOfIpAddresses": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The total number of IP addresses."
+        },
+        "numberOfAllocatedIpAddresses": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The number of currently allocated IP addresses."
+        },
+        "numberOfIpAddressesInTransition": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#/definitions/expression"
+            }
+          ],
+          "description": "The current number of IP addresses in transition."
+        }
+      },
+      "description": "Properties of an IpPool."
+    }
+  }
+}
