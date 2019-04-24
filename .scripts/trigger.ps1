@@ -52,19 +52,21 @@ $allreadmes |% {
   => On "$file `n => found api versions : $apiversions `n`n" 
   $apiversions |% {
     # // run autorest on $file with --api-version:$_  
-    write-host autorest --use=C:\work\2019\autorest.azureresourceschema --enable-multi-api  --azureresourceschema $file --output-folder=$schemas "--api-version:$_"  --title=none
+    write-host autorest --use=C:\work\2019\autorest.azureresourceschema --enable-multi-api  --azureresourceschema $file --output-folder=$schemas "--api-version:$_"  --title=none 
 
     # Local test version of schema generator
-    autorest --use=C:\work\2019\autorest.azureresourceschema --azureresourceschema $file --output-folder=$schemas "--api-version:$_"  --title=none
+    autorest --use=C:\work\2019\autorest.azureresourceschema --azureresourceschema $file --output-folder=$schemas "--api-version:$_"  --title=none --verbose --debug
     #autorest --azureresourceschema@v3 $file --output-folder=$schemas "--api-version:$_"  --title=none
 
     $v = $LastExitCode
     if( $v -ne 0 ) {
       $txt =  "$txt`n$file - $_"
-      write-host $txt
+      write-host -fore red "FAILED: $txt`n$file - $_"
     }
   }
 }
+
+set-content -path $PSScriptRoot/failed.txt -value $txt
 
 <#
 
