@@ -1,9 +1,34 @@
+
 $ErrorActionPreference  = "stop"
 . $PSScriptRoot/shared.ps1
 . $PSScriptRoot/constants.ps1
 
 # This script requires the following:
+# nodejs v10.15 (LTS build)
 # git
+# autorest (v3 beta) -- use 'npm install -' 
+
+# will quit after number of failed RPs
+$MaxFailures = 9999
+
+# filter out these modules for now (broken, fixing autorest core bug)
+$filter  = @(
+  'apimanagement',
+  'network',
+  'aszadmin',
+  'cost-management',
+  'datamigration',
+  'deploymentmanager',
+  'hardwaresecuritymodules',
+  'security',
+  'servicefabric',
+  'storage'
+)
+
+# you can restrict it to generating just what's in here.
+$only  = @(
+#  'compute'
+)
 
 ## ===========================================================================
 # script
@@ -27,23 +52,27 @@ if( -not (test-path $restSpecs)) {
   }
 }
 
-
-# node c:\work\2019\autorest\src\autorest\dist\app --enable-multi-api --use=C:\work\2019\autorest.azureresourceschema --azureresourceschema C:\work\2019\azure-rest-api-specs\specification\redis\resource-manager\readme.md --output-folder=./schemas
-# --debug --verbose   --all C:\work\2019\azure-rest-api-specs\specification\redis\resource-manager\readme.md --output-folder=./schemas
-
-# autorest --azureresourceschema --api-version:XXXX-YY-ZZ  --output-folder:$(csaharpsdk) --MYSDKFOLDER:/foo/bar/bing/
-
 $txt = "";
 
 // get all readme.md files 
-$allreadmes = get-childitem $restSpecs\readme.enable-multi-api.md -recurse  | where { $_.FullName -match "resource.manager" }|where {-not ($_.FullName -match "network")} 
+$allreadmes = get-childitem $restSpecs\readme.enable-multi-api.md -recurse  | where { $_.FullName -match "resource.manager" }
 
-# play with just one...
-# $allreadmes =@(  '$restSpecs\specification\network\resource-manager\readme.md' )
+# filter out anything in $filter
+if( $filter -and $filter.length ) {
+  $allreadmes = $allreadmes | where { -not ($_.FullName -match ($filter -join '|')) }  
+}
 
+# keep anything in $only
+if( $only -and $only.length ) {
+  $allreadmes = $allreadmes | where { $_.FullName -match ($only -join '|') }  
+}
+
+$txt = ''
 $x = 0
 
 $allreadmes |% {
+  if( $x -lt $MaxFailures ) {
+    $x = $x +1 
   $file = $_
   $parent = Resolve-Path "$($file)\.."  
   
@@ -55,52 +84,22 @@ $allreadmes |% {
     write-host autorest --use=C:\work\2019\autorest.azureresourceschema --enable-multi-api  --azureresourceschema $file --output-folder=$schemas "--api-version:$_"  --title=none 
 
     # Local test version of schema generator
-    autorest --use=C:\work\2019\autorest.azureresourceschema --azureresourceschema $file --output-folder=$schemas "--api-version:$_"  --title=none --verbose --debug
-    #autorest --azureresourceschema@v3 $file --output-folder=$schemas "--api-version:$_"  --title=none
+    # use the following line to use a local build of the autorest.azureresourceschema generator.
+    # autorest --use=C:\work\2019\autorest.azureresourceschema --azureresourceschema $file --output-folder=$schemas "--api-version:$_"  --title=none 
+
+    # uses the published autorest resource schema generator v3
+    autorest "--azureresourceschema@v3" $file --output-folder=$schemas "--api-version:$_"  --title=justschema
 
     $v = $LastExitCode
     if( $v -ne 0 ) {
       $txt =  "$txt`n$file - $_"
-      write-host -fore red "FAILED: $txt`n$file - $_"
+      write-host -fore red "FAILED: $file - APIVersion: $_"
     }
   }
-}
-
-set-content -path $PSScriptRoot/failed.txt -value $txt
-
-<#
-
-// find files changed in last commit.
-$files = in $restSpecs { git diff-tree --no-commit-id --name-only -r HEAD~1 } 
-$swaggers = @()
-
-$files |% { 
-  $file = "$restSpecs/$_"
-  $content = get-content -raw $file
-  if( $content -match '"swagger": "2.0"' ) {
-    // $file is a swagger file
-    $swaggers += $file 
   }
 }
 
-$cmd =  @()
+# record the failures
+set-content -path $PSScriptRoot/failed.txt -value $txt
 
-$swaggers |% {
-  $swagger = $_
-  # $cmd = $cmd + "--input-file=$( resolve-path $swagger)"
-  => autorest  --input-file=$(resolve-path $swagger)  --output-folder:$schemas --azureresourceschema
-  autorest --input-file=$(resolve-path $swagger) --output-folder:$schemas --azureresourceschema --title:none
 
-}
-
-#=> autorest $cmd --output-folder:$schemas --azureresourceschema
-#autorest $cmd --output-folder:$schemas --azureresourceschema --title:none
-
-#>
-$newfiles = in $schemas { (git status . -uall).Trim() }
-$newMarkdownFiles = $newfiles | where { $_ -match ".md" }
-$newSchemaFiles = $newfiles | where { $_ -match ".json" }
-
-in $schemas { $newMarkdownFiles |% { remove-item $_ }  }
-
-=> $newSchemaFiles
