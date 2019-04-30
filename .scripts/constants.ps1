@@ -9,4 +9,6 @@ $tmp = resolvepath $root/tmp ; mkdir -ea 0  $tmp
 $restSpecs = resolvepath $tmp/azure-rest-api-specs
 $schemas = resolvepath $root/schemas
 
+$null = mkdir -ea 0 $schemas
+
 

@@ -3,6 +3,12 @@ $ErrorActionPreference  = "stop"
 . $PSScriptRoot/shared.ps1
 . $PSScriptRoot/constants.ps1
 
+# use the genenerator from npm.
+$generator = '@microsoft.azure/autorest.azureresourceschema@v3'
+
+# to use a locally built generator use this: 
+#$generator = 'C:\tmp\g\autorest.azureresourceschema'
+
 # This script requires the following:
 # nodejs v10.15 (LTS build)
 # git
@@ -80,15 +86,19 @@ $allreadmes |% {
 
   => On "$file `n => found api versions : $apiversions `n`n" 
   $apiversions |% {
-    # // run autorest on $file with --api-version:$_  
-    write-host autorest --use=C:\work\2019\autorest.azureresourceschema --enable-multi-api  --azureresourceschema $file --output-folder=$schemas "--api-version:$_"  --title=none 
+    # run autorest on $file with --api-version:$_  
+    # write-host autorest --use=C:\work\2019\autorest.azureresourceschema --enable-multi-api  --azureresourceschema $file --output-folder=$schemas "--api-version:$_"  --title=none 
 
     # Local test version of schema generator
     # use the following line to use a local build of the autorest.azureresourceschema generator.
     # autorest --use=C:\work\2019\autorest.azureresourceschema --azureresourceschema $file --output-folder=$schemas "--api-version:$_"  --title=none 
 
     # uses the published autorest resource schema generator v3
-    autorest "--azureresourceschema@v3" $file --output-folder=$schemas "--api-version:$_"  --title=justschema
+    
+    
+    write-host autorest --use:$generator --output-folder=$schemas "--api-version:$_" --verbose $file 
+    autorest --use:$generator --output-folder=$schemas "--api-version:$_" --verbose $file 
+
 
     $v = $LastExitCode
     if( $v -ne 0 ) {
